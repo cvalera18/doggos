@@ -1,6 +1,6 @@
-package com.cvalera.doggos.Interface;
+package com.cvalera.doggos.data.network;
 
-import com.cvalera.doggos.model.Dogs;
+import com.cvalera.doggos.model.Dog;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import retrofit2.http.GET;
 public interface TheDogApi {
 
     @GET("v1/images/search")
-    Call<List<Dogs>> getDogs();
+    Call<List<Dog>> getDogs();
 }
