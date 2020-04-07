@@ -7,7 +7,9 @@ import androidx.annotation.Nullable;
 
 import com.cvalera.doggos.data.network.TheDogApi;
 import com.cvalera.doggos.model.Dog;
+import com.cvalera.doggos.model.DogVo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -43,9 +45,12 @@ public class Repository {
                 List<Dog> dogList = response.body();
 
                 if (dogList != null) {
-                    listener.onSuccess(dogList);
+                    ArrayList<DogVo> dogVoList = new ArrayList<>();
+                    for (Dog dog : dogList) {
+                        dogVoList.add(new DogVo(dog.getUrl(), dog.getId()));
+                    }
+                    listener.onSuccess(dogVoList);
                 }
-
             }
 
             @Override
@@ -58,7 +63,7 @@ public class Repository {
     }
 
     public interface DogsListener {
-        void onSuccess(List<Dog> dogs);
+        void onSuccess(List<DogVo> dogs);
 
         void onFailure(@NonNull String message, @Nullable Throwable throwable);
     }
