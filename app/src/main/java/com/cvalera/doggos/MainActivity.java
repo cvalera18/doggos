@@ -2,7 +2,6 @@ package com.cvalera.doggos;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,10 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.cvalera.doggos.data.Repository;
 import com.cvalera.doggos.model.AdaptadorDogs;
-import com.cvalera.doggos.model.Dog;
 import com.cvalera.doggos.model.DogVo;
 
 import java.util.ArrayList;

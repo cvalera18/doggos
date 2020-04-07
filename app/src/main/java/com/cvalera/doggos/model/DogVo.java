@@ -4,7 +4,7 @@ public class DogVo {
     private String url;
     private String id;
 
-    public DogVo(){
+    public DogVo() {
 
     }
 

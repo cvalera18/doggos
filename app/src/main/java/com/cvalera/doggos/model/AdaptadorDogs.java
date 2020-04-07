@@ -10,10 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.cvalera.doggos.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptadorDogs extends RecyclerView.Adapter<AdaptadorDogs.ViewHolderDogs> {
@@ -32,7 +30,7 @@ public class AdaptadorDogs extends RecyclerView.Adapter<AdaptadorDogs.ViewHolder
     @NonNull
     @Override
     public ViewHolderDogs onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_dogs,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_dogs, null, false);
         return new ViewHolderDogs(view);
     }
 
@@ -57,7 +55,7 @@ public class AdaptadorDogs extends RecyclerView.Adapter<AdaptadorDogs.ViewHolder
 
         void bind(DogVo dog) {
             Glide.with(this.itemView.getContext()).load(dog.getUrl()).into(this.fotoDog);
-            Log.d("URL: ",dog.getUrl());
+            Log.d("URL: ", dog.getUrl());
         }
     }
 }
