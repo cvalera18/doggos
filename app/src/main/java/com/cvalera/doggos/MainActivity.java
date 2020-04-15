@@ -19,24 +19,23 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerDogs;
+    private Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        repository = new Repository();
         recyclerDogs = findViewById(R.id.rv_dogs);
         recyclerDogs.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         AdaptadorDogs adapter = new AdaptadorDogs(new ArrayList<>());
         recyclerDogs.setAdapter(adapter);
 
-        Repository repository = new Repository();
         repository.getDogs(new Repository.DogsListener() {
-
             @Override
             public void onSuccess(List<DogVo> dogs) {
-
                 adapter.setListaDogs(dogs);
             }
 
