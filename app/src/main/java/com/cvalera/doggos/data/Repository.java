@@ -51,6 +51,9 @@ public class Repository {
                     }
                     listener.onSuccess(dogVoList);
                 }
+                else {
+                    listener.onFailure("Body is null", null);
+                }
             }
 
             @Override

@@ -45,12 +45,11 @@ public class AdaptadorDogs extends RecyclerView.Adapter<AdaptadorDogs.ViewHolder
     }
 
     public class ViewHolderDogs extends RecyclerView.ViewHolder {
-        private ImageView fotoDog, icStar;
+        private ImageView fotoDog;
 
         public ViewHolderDogs(@NonNull View itemView) {
             super(itemView);
             fotoDog = itemView.findViewById(R.id.ivDog);
-
         }
 
         void bind(DogVo dog) {

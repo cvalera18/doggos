@@ -18,23 +18,20 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<DogVo> listaDogs;
-    RecyclerView recyclerDogs;
-    private Repository repository;
+    private RecyclerView recyclerDogs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listaDogs = new ArrayList<>();
-        recyclerDogs = findViewById(R.id.rv1);
+        recyclerDogs = findViewById(R.id.rv_dogs);
         recyclerDogs.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        AdaptadorDogs adapter = new AdaptadorDogs(listaDogs);
+        AdaptadorDogs adapter = new AdaptadorDogs(new ArrayList<>());
         recyclerDogs.setAdapter(adapter);
 
-        repository = new Repository();
+        Repository repository = new Repository();
         repository.getDogs(new Repository.DogsListener() {
 
             @Override
