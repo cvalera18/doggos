@@ -2,21 +2,23 @@ package com.cvalera.doggos;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.cvalera.doggos.data.Repository;
-import com.cvalera.doggos.model.Dog;
+import com.cvalera.doggos.model.AdaptadorDogs;
+import com.cvalera.doggos.model.DogVo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private RecyclerView recyclerDogs;
     private Repository repository;
 
     @Override
@@ -25,38 +27,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         repository = new Repository();
+        recyclerDogs = findViewById(R.id.rv_dogs);
+        recyclerDogs.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        Button boton = findViewById(R.id.botonG);
-        boton.setOnClickListener(new View.OnClickListener() {
+        AdaptadorDogs adapter = new AdaptadorDogs(new ArrayList<>());
+        recyclerDogs.setAdapter(adapter);
+
+        repository.getDogs(new Repository.DogsListener() {
+            @Override
+            public void onSuccess(List<DogVo> dogs) {
+                adapter.setListaDogs(dogs);
+            }
 
             @Override
-            public void onClick(View v) {
-
-                repository.getDogs(new Repository.DogsListener() {
-
-                    @Override
-                    public void onSuccess(List<Dog> dogs) {
-
-//                        for (int i = 0; i < dogs.size(); i++) {
-//                            Dog dog = dogs.get(i);
-//                            String content = dog.getUrl();
-//                        }
-
-                        for (Dog dog : dogs) {
-                            String content = dog.getUrl();
-                            String idcontent = dog.getId();
-                            Log.d("Direccion", content);
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull String message, @Nullable Throwable throwable) {
-                        Log.e("Failure", message);
-                    }
-                });
+            public void onFailure(@NonNull String message, @Nullable Throwable throwable) {
+                Log.e("Failure", message);
             }
         });
     }
+
 //Final
 }
